@@ -1,5 +1,5 @@
 let firstLoad = true
-const pathJS = "assets/js"
+const pathJS = "js/"
 
 document.addEventListener("DOMContentLoaded", () => {
     checkPath();
@@ -8,16 +8,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-const checkPath = async ({create = true}) => {
+const checkPath = async (create = true) => {
     let pathName = window.location.pathname;
     if (pathName == "/") {
         await createPage('pageOne' , "jsOne" , create)
     } else if (pathName == "/PROFILE") {
-        await createPage('pageTwo' , "jsTwo" , 'PROFILE' , create)
+        await createPage('pageTwo' , "jsTwo" , create , 'PROFILE' )
     }
 };
 
-const createPage = async (path , srcScript , {url = ""} , type) => {
+const createPage = async (path , srcScript , type , url = "") => {
     // paramitor
     let host = window.location.host;
     await fetch("http://" + host + "/changePage" , {
@@ -32,7 +32,7 @@ const createPage = async (path , srcScript , {url = ""} , type) => {
     }).then(e => e.text()).then(html => {
         let s = document.createElement('script')
         document.getElementById("scriptOfPage").remove()
-        s.src = pathJS+srcScript+"js"
+        s.src = pathJS+srcScript+".js"
         s.id = "scriptOfPage"
         document.body.innerHTML = html;
         document.body.appendChild(s)
