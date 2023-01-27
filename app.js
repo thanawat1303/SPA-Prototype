@@ -5,14 +5,14 @@ const nameWeb = "WEB1DDUCK"
 app.use(express.json())
 app.set('view engine' , 'ejs')
 app.set('views' , 'page')
-app.use(express.static('assets'))
+app.use(express.static('/'))
 
 app.get('/' , (req , res)=>{
     res.render('index' , {name:nameWeb})
 })
 
 app.post('/changePage' , (req , res)=>{
-    if(req.body['password'] == '123456') res.render(req.body['page'])
+    if(req.body['password'] == 'thanawat1303') res.render(req.body['page'])
     else res.send('')
 })
 
