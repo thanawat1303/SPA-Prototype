@@ -10,14 +10,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const checkPath = async (create = true) => {
     let pathName = window.location.pathname;
+    console.log(pathName)
     if (pathName == "/") {
-        await createPage('pageOne' , "jsOne" , create)
-    } else if (pathName == "/PROFILE") {
-        await createPage('pageTwo' , "jsTwo" , create , 'PROFILE' )
+        await createPage('pageOne' , "jsOne" , create , '#body')
+    } else if (pathName == "/TWO") {
+        await createPage('pageTwo' , "jsTwo" , create , '#body' ,'PROFILE' )
     }
 };
 
-const createPage = async (path , srcScript , type , url = "") => {
+const createPage = async (path , srcScript , type , tagFocus , url = "") => {
     // paramitor
     let host = window.location.host;
     await fetch("http://" + host + "/changePage" , {
@@ -34,7 +35,7 @@ const createPage = async (path , srcScript , type , url = "") => {
         document.getElementById("scriptOfPage").remove()
         s.src = pathJS+srcScript+".js"
         s.id = "scriptOfPage"
-        document.body.innerHTML = html;
+        document.querySelector(tagFocus).innerHTML = html;
         document.body.appendChild(s)
     });
 
