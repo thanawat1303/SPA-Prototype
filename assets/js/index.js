@@ -48,4 +48,3 @@ const createPage = async (path , srcScript , type , tagFocus , url = "") => {
         } else firstLoad = false
     }
 };
-
